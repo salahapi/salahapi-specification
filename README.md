@@ -1,6 +1,6 @@
 # SalahAPI Specification
 
-![SalahAPI Logo](assets/salahapi.png)
+![SalahAPI Logo](assets/salahapi-sm.png)
 
 ## Overview
 
