@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://salahapi.com/schemas/1.0.schema.json",
+  "title": "SalahAPI 1.0",
+  "description": "JSON Schema for SalahAPI 1.0 Specification - A standard format for Islamic prayer times data",
+  "type": "object",
+  "required": ["salahapi", "info"],
+  "properties": {
+    "salahapi": {
+      "type": "string",
+      "description": "The version of the SalahAPI Specification being used",
+      "pattern": "^1\\.0(\\.\\d+)?$",
+      "examples": ["1.0", "1.0.0"]
+    },
+    "info": {
+      "$ref": "#/definitions/InfoObject"
+    },
+    "location": {
+      "$ref": "#/definitions/LocationObject"
+    },
+    "calculationMethod": {
+      "$ref": "#/definitions/CalculationMethodObject"
+    },
+    "dailyPrayerTimes": {
+      "$ref": "#/definitions/DailyPrayerTimesObject"
+    }
+  },
+  "definitions": {
+    "InfoObject": {
+      "type": "object",
+      "description": "Provides metadata about the prayer times data",
+      "required": ["title", "description", "version"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the organization or service providing the prayer times"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the organization or service"
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the prayer times data document"
+        },
+        "contact": {
+          "$ref": "#/definitions/ContactObject"
+        }
+      }
+    },
+    "ContactObject": {
+      "type": "object",
+      "description": "Contact information for the service maintainer",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Contact name"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Contact URL"
+        }
+      }
+    },
+    "LocationObject": {
+      "type": "object",
+      "description": "Defines the geographic location for which prayer times are calculated",
+      "required": ["latitude", "longitude", "timezone", "dateFormat", "timeFormat"],
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "Decimal degrees latitude",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Decimal degrees longitude",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone identifier",
+          "examples": ["America/New_York", "Europe/London", "Asia/Dubai"]
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name"
+        },
+        "dateFormat": {
+          "type": "string",
+          "description": "Date format used in the document",
+          "examples": ["YYYY-MM-DD", "DD/MM/YYYY", "MM/DD/YYYY"]
+        },
+        "timeFormat": {
+          "type": "string",
+          "description": "Time format used in the document",
+          "examples": ["HH:mm", "HH:mm:ss", "hh:mm A"]
+        }
+      }
+    },
+    "CalculationMethodObject": {
+      "type": "object",
+      "description": "Defines the parameters used for calculating prayer times",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Calculation method identifier",
+          "enum": [
+            "isna",
+            "mwl",
+            "egypt",
+            "makkah",
+            "karachi",
+            "tehran",
+            "jafari",
+            "dubai",
+            "kuwait",
+            "qatar",
+            "singapore",
+            "france",
+            "turkey",
+            "russia",
+            "other"
+          ]
+        },
+        "fajrAngle": {
+          "type": "number",
+          "description": "Angle of sun below horizon for Fajr (degrees)",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "ishaAngle": {
+          "type": "number",
+          "description": "Angle of sun below horizon for Isha (degrees)",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "asrCalculationMethod": {
+          "type": "string",
+          "description": "Method for calculating Asr",
+          "enum": ["standard", "hanafi"]
+        },
+        "highLatitudeAdjustment": {
+          "type": "string",
+          "description": "Adjustment method for high latitude locations",
+          "enum": ["middleOfTheNight", "oneSeventh", "twilightAngle"]
+        }
+      }
+    },
+    "DailyPrayerTimesObject": {
+      "type": "object",
+      "description": "Provides a reference to the static CSV data containing daily prayer times",
+      "required": ["csvUrl", "dateFormat", "timeFormat"],
+      "properties": {
+        "csvUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the endpoint containing prayer times in CSV format"
+        },
+        "dateFormat": {
+          "type": "string",
+          "description": "Date format used in the CSV",
+          "examples": ["YYYY-MM-DD", "DD/MM/YYYY", "MM/DD/YYYY"]
+        },
+        "timeFormat": {
+          "type": "string",
+          "description": "Time format used in the CSV",
+          "examples": ["HH:mm", "HH:mm:ss", "hh:mm A"]
+        }
+      }
+    }
+  }
+}
