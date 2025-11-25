@@ -1,4 +1,5 @@
 {
+  "$schema": "../versions/1.0.schema.json",
   "salahapi": "1.0",
   "info": {
     "title": "New York Islamic Center Prayer Times",
@@ -27,17 +28,20 @@
     "highLatitudeAdjustment": "middleOfTheNight"
   },
   "dailyPrayerTimes": {
-    "csvUrl": "https://nyislamiccenter.org/prayer_times_2025.csv",
+    "csvUrl": "https://nyislamiccenter.org/api/csv_prayer_times",
     "csvUrlParameters": {
       "fromDate": {
+        "in": "query",
         "type": "fromDate",
         "format": "YYYY-MM-DD"
       },
       "toDate": {
+        "in": "query",
         "type": "toDate",
         "format": "YYYY-MM-DD"
       },
       "longitude": {
+        "in": "query",
         "value": -74.0060
       }
     },

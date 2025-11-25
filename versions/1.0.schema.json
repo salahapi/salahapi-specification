@@ -178,8 +178,13 @@
               {
                 "type": "object",
                 "description": "Date parameter with type and format",
-                "required": ["type", "format"],
+                "required": ["in", "type", "format"],
                 "properties": {
+                  "in": {
+                    "type": "string",
+                    "enum": ["query", "path", "header"],
+                    "description": "Where the parameter should be sent"
+                  },
                   "type": {
                     "type": "string",
                     "enum": ["fromDate", "toDate"],
@@ -195,8 +200,13 @@
               {
                 "type": "object",
                 "description": "Static value parameter",
-                "required": ["value"],
+                "required": ["in", "value"],
                 "properties": {
+                  "in": {
+                    "type": "string",
+                    "enum": ["query", "path", "header"],
+                    "description": "Where the parameter should be sent"
+                  },
                   "value": {
                     "oneOf": [
                       {"type": "string"},

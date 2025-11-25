@@ -1,4 +1,5 @@
 {
+  "$schema": "../versions/1.0.schema.json",
   "salahapi": "1.0",
   "info": {
     "title": "Masjid Al-Noor Prayer Times",
@@ -11,19 +12,6 @@
   },
   "dailyPrayerTimes": {
     "csvUrl": "https://masjidalnoor.org/data/prayer_times_2025.csv",
-    "csvUrlParameters": {
-      "fromDate": {
-        "type": "fromDate",
-        "format": "YYYY-MM-DD"
-      },
-      "toDate": {
-        "type": "toDate",
-        "format": "YYYY-MM-DD"
-      },
-      "masjidId": {
-        "value": "al-noor"
-      }
-    },
     "dateFormat": "YYYY-MM-DD",
     "timeFormat": "HH:mm"
   }
