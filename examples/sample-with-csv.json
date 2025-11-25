@@ -25,7 +25,37 @@
     "fajrAngle": 15,
     "ishaAngle": 15,
     "asrCalculationMethod": "standard",
-    "highLatitudeAdjustment": "middleOfTheNight"
+    "highLatitudeAdjustment": "middleOfTheNight",
+    "jumuahRules": [
+      {
+        "name": "Jumuah 1",
+        "time": {
+          "static": "12:30"
+        },
+        "timeDST": {
+          "static": "13:30"
+        },
+        "location": {
+          "name": "New York Islamic Center",
+          "address": "123 Main St, New York, NY 10001"
+        }
+      },
+      {
+        "name": "Jumuah 2",
+        "time": {
+          "change": "weekly",
+          "roundMinutes": 15,
+          "afterAthanMinutes": 30
+        },
+        "timeDST": {
+          "static": "14:30"
+        },
+        "location": {
+          "name": "New York Islamic Center",
+          "address": "123 Main St, New York, NY 10001"
+        }
+      }
+    ]
   },
   "dailyPrayerTimes": {
     "csvUrl": "https://nyislamiccenter.org/api/csv_prayer_times",

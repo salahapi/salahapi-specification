@@ -157,6 +157,16 @@
           "type": "string",
           "description": "Adjustment method for high latitude locations",
           "enum": ["middleOfTheNight", "oneSeventh", "twilightAngle"]
+        },
+        "iqamaCalculationRules": {
+          "$ref": "#/definitions/IqamaCalculationRulesObject"
+        },
+        "jumuahRules": {
+          "type": "array",
+          "description": "Array of Jumuah (Friday prayer) rules",
+          "items": {
+            "$ref": "#/definitions/JumuahRuleObject"
+          }
         }
       }
     },
@@ -228,6 +238,132 @@
           "type": "string",
           "description": "Time format used in the CSV",
           "examples": ["HH:mm", "HH:mm:ss", "hh:mm A"]
+        }
+      }
+    },
+    "IqamaCalculationRulesObject": {
+      "type": "object",
+      "description": "Defines the rules for calculating Iqama times",
+      "properties": {
+        "changeOn": {
+          "type": "string",
+          "description": "Day of the week when Iqama times change",
+          "enum": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+        },
+        "fajr": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "fajrDST": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "dhuhr": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "dhuhrDST": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "asr": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "asrDST": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "maghrib": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "maghribDST": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "isha": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        },
+        "ishaDST": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject"
+        }
+      }
+    },
+    "PrayerCalculationRuleObject": {
+      "type": "object",
+      "description": "Defines a single prayer time calculation rule",
+      "properties": {
+        "static": {
+          "type": "string",
+          "description": "Static time value in 24-hour format. If specified, all other fields are ignored.",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+          "examples": ["12:30", "06:45"]
+        },
+        "change": {
+          "type": "string",
+          "description": "Frequency of change",
+          "enum": ["daily", "weekly"]
+        },
+        "roundMinutes": {
+          "type": "number",
+          "description": "Number of minutes to round to",
+          "minimum": 1,
+          "examples": [1, 5, 15, 30]
+        },
+        "earliest": {
+          "type": "string",
+          "description": "Earliest allowed time in 24-hour format",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+          "examples": ["04:00", "05:30"]
+        },
+        "latest": {
+          "type": "string",
+          "description": "Latest allowed time in 24-hour format",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+          "examples": ["23:45", "21:00"]
+        },
+        "afterAthanMinutes": {
+          "type": "number",
+          "description": "Delay in minutes after the Athan (call to prayer)",
+          "minimum": 0,
+          "examples": [5, 10, 15]
+        },
+        "beforeEndMinutes": {
+          "type": "number",
+          "description": "Minutes before the end of the prayer timeframe",
+          "minimum": 0,
+          "examples": [30, 45, 60]
+        }
+      }
+    },
+    "JumuahRuleObject": {
+      "type": "object",
+      "description": "Defines a single Jumuah (Friday prayer) rule",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the Jumuah prayer",
+          "examples": ["Jumuah 1", "Youth Jumuah", "Sisters Jumuah"]
+        },
+        "time": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject",
+          "description": "Calculation rule for Jumuah time"
+        },
+        "timeDST": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject",
+          "description": "DST override for Jumuah time"
+        },
+        "location": {
+          "$ref": "#/definitions/JumuahLocationObject",
+          "description": "Location information for the Jumuah prayer"
+        }
+      }
+    },
+    "JumuahLocationObject": {
+      "type": "object",
+      "description": "Defines the location for a Jumuah prayer",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the location",
+          "examples": ["Main Prayer Hall", "Community Center"]
+        },
+        "address": {
+          "type": "string",
+          "description": "Physical address of the location"
         }
       }
     }
