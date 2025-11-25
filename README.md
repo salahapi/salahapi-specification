@@ -1,5 +1,7 @@
 # SalahAPI Specification
 
+![SalahAPI Logo](assets/salahapi.png)
+
 ## Overview
 
 The **SalahAPI Specification** defines a standard, language-agnostic interface for exchanging Islamic prayer times (Salah) data across services and applications. This specification enables both humans and computers to discover and understand the structure of prayer times data without requiring access to source code, documentation, or network traffic inspection.
