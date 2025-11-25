@@ -1,0 +1,29 @@
+{
+  "salahapi": "1.0",
+  "info": {
+    "title": "London Central Mosque Prayer Times",
+    "description": "Dynamically calculated prayer times for London using Muslim World League method",
+    "version": "1.0.0",
+    "contact": {
+      "name": "London Central Mosque",
+      "email": "info@londonmosque.org",
+      "url": "https://londonmosque.org"
+    }
+  },
+  "location": {
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "timezone": "Europe/London",
+    "city": "London",
+    "country": "United Kingdom",
+    "dateFormat": "DD/MM/YYYY",
+    "timeFormat": "HH:mm"
+  },
+  "calculationMethod": {
+    "name": "mwl",
+    "fajrAngle": 18,
+    "ishaAngle": 17,
+    "asrCalculationMethod": "standard",
+    "highLatitudeAdjustment": "middleOfTheNight"
+  }
+}

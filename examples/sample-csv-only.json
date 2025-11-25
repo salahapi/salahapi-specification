@@ -1,0 +1,30 @@
+{
+  "salahapi": "1.0",
+  "info": {
+    "title": "Masjid Al-Noor Prayer Times",
+    "description": "Static prayer times schedule for the year 2025",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Masjid Administration",
+      "email": "admin@masjidalnoor.org"
+    }
+  },
+  "dailyPrayerTimes": {
+    "csvUrl": "https://masjidalnoor.org/data/prayer_times_2025.csv",
+    "csvUrlParameters": {
+      "fromDate": {
+        "type": "fromDate",
+        "format": "YYYY-MM-DD"
+      },
+      "toDate": {
+        "type": "toDate",
+        "format": "YYYY-MM-DD"
+      },
+      "masjidId": {
+        "value": "al-noor"
+      }
+    },
+    "dateFormat": "YYYY-MM-DD",
+    "timeFormat": "HH:mm"
+  }
+}

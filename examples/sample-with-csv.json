@@ -1,0 +1,47 @@
+{
+  "salahapi": "1.0",
+  "info": {
+    "title": "New York Islamic Center Prayer Times",
+    "description": "Prayer times for New York City using ISNA calculation method with CSV data overrides for special occasions",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Prayer Times Support",
+      "email": "support@nyislamiccenter.org",
+      "url": "https://nyislamiccenter.org"
+    }
+  },
+  "location": {
+    "latitude": 40.7128,
+    "longitude": -74.0060,
+    "timezone": "America/New_York",
+    "city": "New York",
+    "country": "United States",
+    "dateFormat": "YYYY-MM-DD",
+    "timeFormat": "HH:mm"
+  },
+  "calculationMethod": {
+    "name": "isna",
+    "fajrAngle": 15,
+    "ishaAngle": 15,
+    "asrCalculationMethod": "standard",
+    "highLatitudeAdjustment": "middleOfTheNight"
+  },
+  "dailyPrayerTimes": {
+    "csvUrl": "https://nyislamiccenter.org/prayer_times_2025.csv",
+    "csvUrlParameters": {
+      "fromDate": {
+        "type": "fromDate",
+        "format": "YYYY-MM-DD"
+      },
+      "toDate": {
+        "type": "toDate",
+        "format": "YYYY-MM-DD"
+      },
+      "longitude": {
+        "value": -74.0060
+      }
+    },
+    "dateFormat": "YYYY-MM-DD",
+    "timeFormat": "HH:mm"
+  }
+}

@@ -170,6 +170,45 @@
           "format": "uri",
           "description": "URL to the endpoint containing prayer times in CSV format"
         },
+        "csvUrlParameters": {
+          "type": "object",
+          "description": "Optional URL parameters that can be passed to the CSV endpoint",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "Date parameter with type and format",
+                "required": ["type", "format"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["fromDate", "toDate"],
+                    "description": "Type of date parameter"
+                  },
+                  "format": {
+                    "type": "string",
+                    "description": "Date format for the parameter",
+                    "examples": ["YYYY-MM-DD", "DD/MM/YYYY", "MM/DD/YYYY"]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "description": "Static value parameter",
+                "required": ["value"],
+                "properties": {
+                  "value": {
+                    "oneOf": [
+                      {"type": "string"},
+                      {"type": "number"}
+                    ],
+                    "description": "Static value to pass as parameter"
+                  }
+                }
+              }
+            ]
+          }
+        },
         "dateFormat": {
           "type": "string",
           "description": "Date format used in the CSV",
