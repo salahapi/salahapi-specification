@@ -253,31 +253,16 @@
         "fajr": {
           "$ref": "#/definitions/PrayerCalculationRuleObject"
         },
-        "fajrDST": {
-          "$ref": "#/definitions/PrayerCalculationRuleObject"
-        },
         "dhuhr": {
-          "$ref": "#/definitions/PrayerCalculationRuleObject"
-        },
-        "dhuhrDST": {
           "$ref": "#/definitions/PrayerCalculationRuleObject"
         },
         "asr": {
           "$ref": "#/definitions/PrayerCalculationRuleObject"
         },
-        "asrDST": {
-          "$ref": "#/definitions/PrayerCalculationRuleObject"
-        },
         "maghrib": {
           "$ref": "#/definitions/PrayerCalculationRuleObject"
         },
-        "maghribDST": {
-          "$ref": "#/definitions/PrayerCalculationRuleObject"
-        },
         "isha": {
-          "$ref": "#/definitions/PrayerCalculationRuleObject"
-        },
-        "ishaDST": {
           "$ref": "#/definitions/PrayerCalculationRuleObject"
         }
       }
@@ -326,6 +311,37 @@
           "description": "Minutes before the end of the prayer timeframe",
           "minimum": 0,
           "examples": [30, 45, 60]
+        },
+        "overrides": {
+          "type": "array",
+          "description": "Array of date-specific overrides for the prayer time calculation rule",
+          "items": {
+            "$ref": "#/definitions/PrayerCalculationOverrideRuleObject"
+          }
+        }
+      }
+    },
+    "PrayerCalculationOverrideRuleObject": {
+      "type": "object",
+      "description": "Defines a date-specific override for a prayer time calculation rule",
+      "required": ["condition", "time"],
+      "properties": {
+        "condition": {
+          "type": "string",
+          "description": "The type of override rule",
+          "enum": ["daylightSavingsTime", "standardTime", "dateRange"]
+        },
+        "fromDate": {
+          "type": "string",
+          "description": "The start date of the override in the format specified by the dateFormat field. Required if condition is dateRange."
+        },
+        "toDate": {
+          "type": "string",
+          "description": "The end date of the override in the format specified by the dateFormat field. Required if condition is dateRange."
+        },
+        "time": {
+          "$ref": "#/definitions/PrayerCalculationRuleObject",
+          "description": "The prayer calculation rule to apply for the override"
         }
       }
     },
@@ -341,10 +357,6 @@
         "time": {
           "$ref": "#/definitions/PrayerCalculationRuleObject",
           "description": "Calculation rule for Jumuah time"
-        },
-        "timeDST": {
-          "$ref": "#/definitions/PrayerCalculationRuleObject",
-          "description": "DST override for Jumuah time"
         },
         "location": {
           "$ref": "#/definitions/JumuahLocationObject",

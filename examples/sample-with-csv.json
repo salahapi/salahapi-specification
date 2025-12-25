@@ -30,10 +30,15 @@
       {
         "name": "Jumuah 1",
         "time": {
-          "static": "12:30"
-        },
-        "timeDST": {
-          "static": "13:30"
+          "static": "12:30",
+          "overrides": [
+            {
+              "condition": "daylightSavingsTime",
+              "time": {
+                "static": "13:30"
+              }
+            }
+          ]
         },
         "location": {
           "name": "New York Islamic Center",
@@ -45,10 +50,15 @@
         "time": {
           "change": "weekly",
           "roundMinutes": 15,
-          "afterAthanMinutes": 30
-        },
-        "timeDST": {
-          "static": "14:30"
+          "afterAthanMinutes": 30,
+          "overrides": [
+            {
+              "condition": "daylightSavingsTime",
+              "time": {
+                "static": "14:30"
+              }
+            }
+          ]
         },
         "location": {
           "name": "New York Islamic Center",
