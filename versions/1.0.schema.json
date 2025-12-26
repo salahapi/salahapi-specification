@@ -329,15 +329,7 @@
         "condition": {
           "type": "string",
           "description": "The type of override rule",
-          "enum": ["daylightSavingsTime", "standardTime", "dateRange"]
-        },
-        "fromDate": {
-          "type": "string",
-          "description": "The start date of the override in the format specified by the dateFormat field. Required if condition is dateRange."
-        },
-        "toDate": {
-          "type": "string",
-          "description": "The end date of the override in the format specified by the dateFormat field. Required if condition is dateRange."
+          "enum": ["daylightSavingsTime", "ramadan"]
         },
         "time": {
           "$ref": "#/definitions/PrayerCalculationRuleObject",
